@@ -6,17 +6,25 @@
     a story worth savoring.
   </p>
 
-  <div class="flex flex-wrap gap-5 align-self-center mt-10 mx-auto justify-center">
-    @for (food of foods; track food.id) {
-      <a
-        class="cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-75 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
-      >
-        <img class="" src="{{ food.image }}" alt="" />
-        <p class="text-[#39DB4A] font-bold mt-2">$ 9.99</p>
-        <p class="font-bold text-2xs">{{ food.name }}</p>
-        <p class="font-medium text-xs text-gray-700 mt-3">{{ food.restaurant.name }} Restaurant</p>
-        <p class="font-medium text-xs text-gray-700">{{ food.restaurant.description }}</p>
-      </a>
-    }
-  </div>
+  @if (error !== null) {
+  } @else if (foods === null) {
+    <app-spinner />
+  } @else {
+    <div class="flex flex-wrap gap-5 align-self-center mt-10 mb-20 mx-auto justify-center">
+      @for (food of foods; track food._id) {
+        <a
+          routerLink="{{ food._id }}"
+          class="cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-75 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
+        >
+          <img class="" src="{{ food.image }}" alt="" />
+          <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
+          <p class="font-bold text-2xs">{{ food.name }}</p>
+          <p class="font-medium text-xs text-gray-700 mt-3">
+            {{ food.restaurant.name }} Restaurant
+          </p>
+          <p class="font-medium text-xs text-gray-700">{{ food.restaurant.description }}</p>
+        </a>
+      }
+    </div>
+  }
 </div>

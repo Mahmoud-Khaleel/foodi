@@ -1,0 +1,26 @@
+<div class="vw-100">
+  @if (error !== null) {
+    <app-error [error]="error" />
+  } @else if (food === null) {
+    <app-spinner />
+  } @else {
+    <div class="flex flex-col items-center justify-center my-10 mx-5">
+      <div class="flex flex-col lg:flex-row justify-center items-center lg:items-start">
+        <img class="h-1/2 lg:w-1/2" src="{{ food.image }}" alt="" />
+        <div class="ms-5 lg:h-96 flex flex-col justify-center py-10">
+          <div>
+            <p class="text-[#39DB4A] font-bold">$ {{ food.price }}</p>
+
+            <p class="text-3xl font-bold">{{ food.name }}</p>
+          </div>
+          <p class="text-2xs font-normal mt-10">
+            A timeless classic that celebrates simplicity — our Margherita Pizza features a thin,
+            crispy crust topped with rich tomato sauce, fresh mozzarella cheese, and fragrant basil
+            leaves. Each bite delivers the perfect balance of creamy, tangy, and fresh flavors,
+            finished with a drizzle of extra virgin olive oil for that authentic Italian touch.
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
