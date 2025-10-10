@@ -10,23 +10,22 @@
   } @else if (foods === null) {
     <app-spinner />
   } @else {
-    <div class="flex flex-wrap gap-5 align-self-center mt-10 mb-20 mx-auto justify-center">
+    <div class="flex flex-wrap gap-5 mt-10 mb-20 justify-center">
       @for (food of foods; track food._id) {
         <a
           routerLink="{{ food._id }}"
           class="relative cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-72 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
         >
-          <img src="{{ food.image }}" alt="" />
-          <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
-          <p class="font-bold text-2xs">{{ food.name }}</p>
-          <p class="font-medium text-xs text-gray-700 mt-3">
-            {{ food.restaurant.name }} Restaurant
-          </p>
-          <p class="font-medium text-xs text-gray-700">{{ food.restaurant.description }}</p>
+          <img class="h-60 w-72 object-cover" src="{{ food.image }}" alt="" />
+          <div class="mx-5">
+            <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
+            <p class="font-bold text-2xs">{{ food.name }}</p>
+            <p class="font-medium text-xs text-gray-700 mt-3">
+              {{ food.restaurant.name }} Restaurant
+            </p>
+            <p class="font-medium text-xs text-gray-700">{{ food.restaurant.description }}</p>
+          </div>
         </a>
-        <div
-          class="absolute top-0 right-0 h-12 w-12 bg-white rounded-full flex justify-center items-center"
-        ></div>
       }
     </div>
   }
