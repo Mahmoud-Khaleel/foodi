@@ -1,0 +1,44 @@
+<nav class="px-6 pt-2">
+  <div class="mx-auto flex items-center justify-between">
+    <!-- Left: Logo -->
+    <img class="h-10" src="images/logo.png" alt="Logo" />
+
+    <!-- Hamburger Icon (Mobile) -->
+    <button
+      class="lg:hidden flex items-center text-gray-700"
+      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+    >
+      <img class="w-10" src="images/menu.png" alt="menu" />
+    </button>
+
+    <!-- Center: Nav Links (Desktop) -->
+    <ul class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Home</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Food</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Restaurants</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Cart</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Favorite</a></li>
+    </ul>
+
+    <!-- Right: Profile Button -->
+    <button class="lg:visible cursor-pointer hover:text-[#39DB4A] transition bg-red-900">
+      Profile
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden mt-4">
+    <ul class="flex flex-col items-center gap-4 font-medium text-gray-700">
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Home</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Food</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Restaurants</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Cart</a></li>
+      <li><a href="#" class="hover:text-[#39DB4A] transition">Favorite</a></li>
+      <button
+        class="flex items-center justify-center gap-2 px-6 py-3 bg-[#F3F3F3] rounded-full shadow-2xl border-2 border-transparent hover:border-[#39DB4A] w-fit"
+      >
+        Profile
+      </button>
+    </ul>
+  </div>
+</nav>
