@@ -1,9 +1,7 @@
 <nav class="px-6 py-2 shadow-xs">
   <div class="mx-auto flex items-center justify-between">
-    <!-- Left: Logo -->
     <img class="h-10" src="images/logo.png" alt="Logo" />
 
-    <!-- Hamburger Icon (Mobile) -->
     <button
       class="lg:hidden flex items-center text-gray-700"
       onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
@@ -11,16 +9,49 @@
       <img class="w-10 cursor-pointer" src="images/menu.png" alt="menu" />
     </button>
 
-    <!-- Center: Nav Links (Desktop) -->
     <ul class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
-      <li><a href="#" class="hover:text-[#39DB4A] transition">Home</a></li>
-      <li><a href="#" class="hover:text-[#39DB4A] transition">Food</a></li>
-      <li><a href="#" class="hover:text-[#39DB4A] transition">Restaurants</a></li>
-      <li><a href="#" class="hover:text-[#39DB4A] transition">Cart</a></li>
-      <li><a href="#" class="hover:text-[#39DB4A] transition">Favorite</a></li>
+      <li>
+        <a
+          routerLinkActive="text-[#39DB4A]"
+          routerLink="home"
+          class="hover:text-[#39DB4A] transition"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="text-[#39DB4A]"
+          routerLink="foods"
+          class="hover:text-[#39DB4A] transition"
+          >Food</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="text-[#39DB4A]"
+          routerLink="restaurants"
+          class="hover:text-[#39DB4A] transition"
+          >Restaurants</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="text-[#39DB4A]"
+          routerLink="cart"
+          class="hover:text-[#39DB4A] transition"
+          >Cart</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="text-[#39DB4A]"
+          routerLink="favorite"
+          class="hover:text-[#39DB4A] transition"
+          >Favorite</a
+        >
+      </li>
     </ul>
 
-    <!-- Right: Profile Button -->
     <button
       class="hidden lg:block cursor-pointer text-white transition bg-[#39DB4A] hover:bg-green-600 px-5 py-2 rounded-full"
     >
@@ -28,7 +59,6 @@
     </button>
   </div>
 
-  <!-- Mobile Menu -->
   <div id="mobileMenu" class="lg:hidden hidden mt-4">
     <ul class="flex flex-col items-center gap-4 font-medium text-gray-700">
       <li><a href="#" class="hover:text-[#39DB4A] transition">Home</a></li>
