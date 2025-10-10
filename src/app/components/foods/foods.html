@@ -14,9 +14,9 @@
       @for (food of foods; track food._id) {
         <a
           routerLink="{{ food._id }}"
-          class="cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-75 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
+          class="relative cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-72 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
         >
-          <img class="" src="{{ food.image }}" alt="" />
+          <img src="{{ food.image }}" alt="" />
           <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
           <p class="font-bold text-2xs">{{ food.name }}</p>
           <p class="font-medium text-xs text-gray-700 mt-3">
@@ -24,6 +24,9 @@
           </p>
           <p class="font-medium text-xs text-gray-700">{{ food.restaurant.description }}</p>
         </a>
+        <div
+          class="absolute top-0 right-0 h-12 w-12 bg-white rounded-full flex justify-center items-center"
+        ></div>
       }
     </div>
   }
