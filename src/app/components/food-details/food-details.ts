@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FoodsService } from '../../services/foods-service';
 import { Spinner } from '../spinner/spinner';
 import { Error } from '../error/error';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-food-details',
@@ -14,9 +16,11 @@ import { Error } from '../error/error';
 export class FoodDetails implements OnInit {
   food: FoodModel | null = null;
   error: string | null = null;
+  isAddingFoodToCart = false;
 
   foodsService = inject(FoodsService);
   route = inject(ActivatedRoute);
+  toastr = inject(ToastrService);
 
   ngOnInit() {
     this.getFood();
@@ -34,5 +38,20 @@ export class FoodDetails implements OnInit {
         this.food = null;
       },
     });
+  }
+
+  addFoodToCart() {
+    this.isAddingFoodToCart = true;
+    this.foodsService
+      .addFoodToCart(this.food!._id)
+      .pipe(finalize(() => (this.isAddingFoodToCart = false)))
+      .subscribe({
+        next: (res) => {
+          this.toastr.success('Food added to cart successfully!');
+        },
+        error: (err) => {
+          this.toastr.error('Failed to add food to cart: ' + err.message);
+        },
+      });
   }
 }

@@ -1,8 +1,9 @@
 <li>
   <a
+    [routerLink]="[routePath]"
     routerLinkActive="text-[#39DB4A]"
-    routerLink="{{ routePath() }}"
     class="hover:text-[#39DB4A] transition"
-    >{{ text() }}</a
   >
+    {{ text }}
+  </a>
 </li>

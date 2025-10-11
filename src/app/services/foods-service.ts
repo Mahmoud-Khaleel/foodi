@@ -16,4 +16,8 @@ export class FoodsService {
   getFood(id: string): Observable<any> {
     return this.http.get(`${this.allFoodsUrl}/${id}`);
   }
+
+  addFoodToCart(id: string): Observable<any> {
+    return this.http.post(`${this.allFoodsUrl}/${id}`, {});
+  }
 }
