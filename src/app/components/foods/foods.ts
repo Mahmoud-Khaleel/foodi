@@ -8,7 +8,6 @@ import { FoodsService } from '../../services/foods-service';
   selector: 'app-foods',
   imports: [RouterLink, Spinner],
   templateUrl: './foods.html',
-  styleUrl: './foods.css',
 })
 export class Foods implements OnInit {
   foods: FoodModel[] | null = null;

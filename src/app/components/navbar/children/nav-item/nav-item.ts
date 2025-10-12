@@ -5,7 +5,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-nav-item',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-item.html',
-  styleUrl: './nav-item.css',
 })
 export class NavItem {
   @Input() routePath!: string;

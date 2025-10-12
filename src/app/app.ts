@@ -9,7 +9,6 @@ import { NavItem } from './components/navbar/children/nav-item/nav-item';
   selector: 'app-root',
   imports: [RouterOutlet, Navbar, Login, SignUp, NavItem],
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('foodi');

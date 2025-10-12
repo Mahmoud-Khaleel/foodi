@@ -6,6 +6,5 @@ import { NavItem } from './children/nav-item/nav-item';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, NavItem],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
 })
 export class Navbar {}

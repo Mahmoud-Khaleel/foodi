@@ -11,7 +11,6 @@ import { finalize } from 'rxjs';
   selector: 'app-food-details',
   imports: [Spinner, Error],
   templateUrl: './food-details.html',
-  styleUrl: './food-details.css',
 })
 export class FoodDetails implements OnInit {
   food: FoodModel | null = null;
