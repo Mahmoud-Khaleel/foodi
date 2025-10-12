@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDJjOGNlMGFiZGFkY2Q5NWIyNTVmMCIsImlhdCI6MTc2MDI2NzU1NiwiZXhwIjoxNzYwMzUzOTU2fQ.cn8TSxkandtgFzmSu1hHgkN-G8DyJMHyLFU0JhGgKDQ';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDJjOGNlMGFiZGFkY2Q5NWIyNTVmMCIsImlhdCI6MTc2MDI4NzUxNSwiZXhwIjoxNzYwMzczOTE1fQ.fWT30Ea4MIcWW6-HxEe7d5jZZjKMrHljUuS_YGANVS4';
 
   if (authToken) {
     const authReq = req.clone({

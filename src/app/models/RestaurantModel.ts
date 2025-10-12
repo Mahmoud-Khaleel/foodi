@@ -7,6 +7,7 @@ export class RestaurantModel {
     public _id: string,
     public name: string,
     public description: string,
+    public image: string,
     public categories: string[],
     public foods: FoodModel[],
   ) {}
