@@ -1,15 +1,23 @@
 <div
-  class="relative cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-72 pb-5 rounded-xl border-gray-200 text-center border-2 overflow-hidden"
+  class="h-96 relative cursor-pointer transition hover:scale-105 hover:bg-green-50 shadow-lg w-72 rounded-xl border-gray-200 text-center border-2 overflow-hidden flex flex-col"
 >
-  <a [routerLink]="food._id">
-    <img class="h-60 w-72 object-cover" [src]="food.image" alt="" />
-    <div class="mx-5">
-      <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
-      <p class="font-bold text-2xs">{{ food.name }}</p>
-      <p class="font-medium text-xs text-gray-700 mt-3">{{ food.restaurant.name }} Restaurant</p>
-      <p class="font-medium text-xs text-gray-700">
-        {{ food.restaurant.description }}
-      </p>
+  <a [routerLink]="['/foods', food._id]" class="flex flex-col h-full">
+    <img class="h-1/2 w-full object-cover" [src]="food.image" alt="" />
+
+    <div class="flex flex-col justify-between flex-1 mx-5">
+      <div>
+        <p class="text-[#39DB4A] font-bold mt-2">$ {{ food.price }}</p>
+        <p class="font-bold text-2xs">{{ food.name }}</p>
+      </div>
+
+      <div class="mt-auto mb-2">
+        <p class="font-semibold text-2xs text-gray-800">
+          {{ restaurant?.name ?? food.restaurant.name }}
+        </p>
+        <p class="font-medium text-xs text-gray-700 line-clamp-2 mb-5">
+          {{ restaurant?.description ?? food.restaurant.description }}
+        </p>
+      </div>
     </div>
   </a>
 </div>
