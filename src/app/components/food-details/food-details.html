@@ -2,7 +2,9 @@
   @if (error !== null) {
     <app-error [error]="error" />
   } @else if (food === null) {
-    <app-spinner />
+    <div class="mt-60">
+      <app-spinner />
+    </div>
   } @else {
     <div>
       <div class="flex flex-col lg:flex-row justify-center items-center lg:items-start m-5">

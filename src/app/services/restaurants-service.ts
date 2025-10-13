@@ -19,4 +19,8 @@ export class RestaurantsService {
     const [lat, lng] = ['31.2362', '30.04235'];
     return this.http.get(`${this.nearbyRestaurantsUrl}?distance=100&unit=km`);
   }
+
+  getRestaurant(id: string): Observable<any> {
+    return this.http.get(`${this.allRestaurantsUrl}/${id}`);
+  }
 }

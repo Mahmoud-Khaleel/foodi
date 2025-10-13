@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FoodModel } from '../../models/FoodModel';
 import { RouterLink } from '@angular/router';
+import { RestaurantModel } from '../../models/RestaurantModel';
 
 @Component({
   selector: 'app-food-item',
@@ -10,4 +11,5 @@ import { RouterLink } from '@angular/router';
 })
 export class FoodItem {
   @Input() food!: FoodModel;
+  @Input() restaurant: RestaurantModel | null = null;
 }
