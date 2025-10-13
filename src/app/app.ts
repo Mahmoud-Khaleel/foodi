@@ -5,10 +5,11 @@ import { Login } from './components/login/login';
 import { SignUp } from './components/sign-up/sign-up';
 import { NavItem } from './components/navbar/children/nav-item/nav-item';
 import { UserProfile } from './components/user-profile/user-profile';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Login, SignUp, NavItem, UserProfile],
+  imports: [RouterOutlet, ReactiveFormsModule, Login, SignUp],
   templateUrl: './app.html',
 })
 export class App {

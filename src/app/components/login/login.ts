@@ -1,8 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
 })
-export class Login {}
+export class Login {
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
+
+  // Define login form
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.toastr.error('Please enter valid credentials');
+      return;
+    }
+
+    this.authService.login(this.form.value).subscribe({
+      next: (res: any) => {
+        this.toastr.success('Login successful!');
+        // Navigate to home page
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.toastr.error('Login failed. Please try again.');
+      },
+    });
+  }
+}
