@@ -1,11 +1,11 @@
 <div
-  class="w-60 h-96 rounded-t-2xl overflow-hidden bg-gray-100 hover:scale-105 shadow-xl cursor-pointer flex flex-col"
+  class="w-60 h-96 rounded-t-2xl overflow-hidden bg-gray-100 hover:scale-105 shadow-xl shadow-green-100 cursor-pointer flex flex-col transition-transform"
 >
-  <a [routerLink]="restaurant._id">
+  <a [routerLink]="restaurant._id" class="flex flex-col h-full">
     <img class="h-1/2 object-cover w-full" [src]="restaurant.image" [alt]="restaurant.name" />
 
     <div class="px-2 py-3 flex flex-col justify-between flex-1">
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-wrap gap-2 justify-center">
         @for (item of restaurant.categories; track $index) {
           <p class="bg-[#39DB4A] p-1 rounded-[5px] text-center text-white text-sm font-normal">
             {{ item }}
@@ -13,10 +13,10 @@
         }
       </div>
 
-      <div class="mt-2">
+      <div class="flex flex-col justify-center items-center text-center flex-1">
         <p class="font-medium text-xl">{{ restaurant.name }}</p>
-        <p class="mt-2 font-normal text-sm text-gray-700 line-clamp-2">
-          {{ restaurant.description + restaurant.description + restaurant.description }}
+        <p class="mt-2 font-normal text-sm text-gray-700 line-clamp-2 max-w-[90%]">
+          {{ restaurant.description }}
         </p>
       </div>
     </div>
