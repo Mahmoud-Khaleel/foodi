@@ -3,11 +3,8 @@ import { Home } from './components/home/home';
 import { Foods } from './components/foods/foods';
 import { FoodDetails } from './components/food-details/food-details';
 import { Cart } from './components/cart/cart';
-<<<<<<< HEAD
 import { Restaurants } from './components/restaurants/restaurants';
-=======
 import { UserProfile } from './components/user-profile/user-profile';
->>>>>>> features/User-profile
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
