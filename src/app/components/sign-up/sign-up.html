@@ -2,7 +2,7 @@
   <!-- Left Section (Form) -->
   <div class="flex flex-col justify-center px-10 w-full lg:w-1/2">
     <div class="max-w-sm mx-auto w-full">
-      <h1 class="text-3xl text-black font-medium font-['Poppins'] mb-5">Get Started Now</h1>
+      <h1 class="text-3xl text-black font-medium font-['Poppins'] mb-5 mt-30">Get Started Now</h1>
 
       <form>
         <div class="space-y-5">
@@ -14,6 +14,17 @@
             <input
               type="text"
               placeholder="Enter your name"
+              class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
+          </div>
+          <!-- phone -->
+          <div>
+            <label class="justify-start text-black text-sm font-medium font-['Poppins']"
+              >Phone</label
+            >
+            <input
+              type="tel"
+              placeholder="Enter your phone"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
@@ -39,6 +50,33 @@
             <input
               type="password"
               placeholder="Enter your password"
+              class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
+          </div>
+          <!-- location -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="justify-start text-black text-sm font-medium font-['Poppins']"
+                >Location</label
+              >
+            </div>
+            <input
+              id="location-input"
+              type="text"
+              placeholder="Enter your location"
+              class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
+          </div>
+          <!-- address -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="justify-start text-black text-sm font-medium font-['Poppins']"
+                >Address</label
+              >
+            </div>
+            <input
+              type="text"
+              placeholder="Enter your address"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
