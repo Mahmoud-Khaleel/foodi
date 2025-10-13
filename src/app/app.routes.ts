@@ -5,6 +5,8 @@ import { FoodDetails } from './components/food-details/food-details';
 import { Cart } from './components/cart/cart';
 import { Restaurants } from './components/restaurants/restaurants';
 import { UserProfile } from './components/user-profile/user-profile';
+import { Login } from './components/login/login';
+import { SignUp } from './components/sign-up/sign-up';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,4 +16,6 @@ export const routes: Routes = [
   { path: 'restaurants', component: Restaurants },
   { path: 'foods/:id', component: FoodDetails },
   { path: 'profile', component: UserProfile },
+  { path: 'login', component: Login },
+  { path: 'signup', component: SignUp },
 ];
