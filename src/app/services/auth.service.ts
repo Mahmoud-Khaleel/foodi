@@ -9,7 +9,9 @@ export class AuthService {
 
   // Register
   register(userData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/signup`, userData);
+    return this.http.post(`${this.baseUrl}/signup`, userData, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   // Login
@@ -26,7 +28,7 @@ export class AuthService {
 
   // Get Profile
   getProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/profile`);
+    return this.http.get(`${this.baseUrl}/me`);
   }
 
   // Logout

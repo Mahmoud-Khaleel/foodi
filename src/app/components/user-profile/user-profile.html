@@ -1,102 +1,74 @@
 <div class="bg-gray-50 flex justify-center items-center min-h-screen">
   <div class="bg-white rounded-2xl shadow-md max-w-4xl w-full p-8">
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-      <div class="flex items-center space-x-4">
-        <!-- <img
-          src="images/person.jpg"
-          alt="Profile"
-          class="w-16 h-16 rounded-full object-cover"
-        /> -->
+    <ng-container *ngIf="!loading; else loadingTemplate">
+      <!-- Header -->
+      <div class="flex items-center mb-8 space-x-4">
         <div>
-          <h2 class="text-lg font-semibold text-gray-800">Mahmoud Khaleel</h2>
-          <p class="text-sm text-gray-500">khaleel@gmail.com</p>
+          <h2 class="text-lg font-semibold text-gray-800">{{ user?.name }}</h2>
+          <p class="text-sm text-gray-500">{{ user?.email }}</p>
         </div>
       </div>
-      <button
-        class="bg-[#39DB4A] hover:bg-green-600 text-white px-5 py-2 rounded-lg text-sm font-medium"
-      >
-        Edit
-      </button>
-    </div>
 
-    <!-- Form Section -->
-    <div class="grid md:grid-cols-2 gap-6 mb-10">
-      <!-- Full Name -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-        <input
-          type="text"
-          placeholder="Your First Name"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-600 text-sm focus:ring-2 focus:ring-[#39DB4A] focus:outline-none"
-        />
-      </div>
-
-      <!-- Phone -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-        <input
-          type="tel"
-          placeholder="Your phone"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 focus:ring-2 focus:ring-[#39DB4A] focus:outline-none"
-        />
-      </div>
-
-      <!-- location -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
-        <input
-          type="text"
-          placeholder="Your location"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 focus:ring-2 focus:ring-[#39DB4A] focus:outline-none"
-        />
-      </div>
-      <!-- address -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
-        <input
-          type="text"
-          placeholder="Your address"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 focus:ring-2 focus:ring-[#39DB4A] focus:outline-none"
-        />
-      </div>
-      <!-- password -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Change Password</label>
-        <input
-          type="password"
-          placeholder="old password"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 focus:ring-2 focus:ring-[#39DB4A] mb-3 focus:outline-none"
-        />
-        <input
-          type="password"
-          placeholder="new password"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 focus:ring-2 focus:ring-[#39DB4A] focus:outline-none"
-        />
-      </div>
-
-
-    <!-- Email Section -->
-    <div>
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">My email Address</h3>
-
-      <div class="flex items-center justify-between bg-gray-50 rounded-lg p-4 mb-3">
-        <div class="flex items-center space-x-3">
-          <div
-            class="w-9 h-9 flex items-center justify-center rounded-full bg-green-100 text-[#39DB4A]"
+      <!-- User Details -->
+      <div class="grid md:grid-cols-2 gap-6 mb-10">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+          <p
+            class="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-600 text-sm bg-gray-100"
           >
-            📧
-          </div>
-          <div>
-            <p class="text-sm font-medium text-gray-800">khaleel@gmail.com</p>
-            <p class="text-xs text-gray-400">1 month ago</p>
-          </div>
+            {{ user?.name }}
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+          <p
+            class="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-600 text-sm bg-gray-100"
+          >
+            {{ user?.phone }}
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+          <p
+            class="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-600 text-sm bg-gray-100"
+          >
+            {{ user?.location }}
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+          <p
+            class="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-600 text-sm bg-gray-100"
+          >
+            {{ user?.address }}
+          </p>
         </div>
       </div>
 
-      <button class="text-[#39DB4A] text-sm font-medium hover:underline mt-2">
-        + Add Email Address
-      </button>
-    </div>
+      <!-- Email Section -->
+      <div>
+        <h3 class="text-sm font-semibold text-gray-700 mb-3">My email Address</h3>
+        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-4 mb-3">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-9 h-9 flex items-center justify-center rounded-full bg-green-100 text-[#39DB4A]"
+            >
+              📧
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-800">{{ user?.email }}</p>
+              <p class="text-xs text-gray-400">1 month ago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingTemplate>
+      <p class="text-gray-500 text-center">Loading profile...</p>
+    </ng-template>
   </div>
 </div>

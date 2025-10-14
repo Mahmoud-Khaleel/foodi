@@ -4,7 +4,7 @@
     <div class="max-w-sm mx-auto w-full">
       <h1 class="text-3xl text-black font-medium font-['Poppins'] mb-5 mt-30">Get Started Now</h1>
 
-      <form>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="space-y-5">
           <!-- Name -->
           <div>
@@ -13,6 +13,7 @@
             >
             <input
               type="text"
+              formControlName="name"
               placeholder="Enter your name"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
@@ -24,6 +25,7 @@
             >
             <input
               type="tel"
+              formControlName="phone"
               placeholder="Enter your phone"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
@@ -35,6 +37,7 @@
             >
             <input
               type="email"
+              formControlName="email"
               placeholder="Enter your email"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
@@ -49,21 +52,8 @@
             </div>
             <input
               type="password"
+              formControlName="password"
               placeholder="Enter your password"
-              class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
-            />
-          </div>
-          <!-- location -->
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="justify-start text-black text-sm font-medium font-['Poppins']"
-                >Location</label
-              >
-            </div>
-            <input
-              id="location-input"
-              type="text"
-              placeholder="Enter your location"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
@@ -80,34 +70,48 @@
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
+          <!-- 🔘 Location -->
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              (click)="getCurrentLocation()"
+              class="px-4 py-2 bg-[#39DB4A] hover:bg-green-600 text-white rounded"
+            >
+              Use My Location
+            </button>
+            <span class="text-gray-600 text-sm">
+              {{ form.value.lat && form.value.lng ? '📍 Location detected' : 'Location not set' }}
+            </span>
+          </div>
 
           <!-- Remember -->
-          <div class="flex items-center space-x-2">
+          <!-- <div class="flex items-center space-x-2">
             <input
               id="agree"
               type="checkbox"
               class="h-4 w-4 text-green-600 border-gray-300 rounded"
             />
             <label for="agree" class="text-sm text-gray-700">I agree to the terms & policy</label>
-          </div>
+          </div> -->
 
           <!-- sign up Button -->
           <button
             type="submit"
+            [disabled]="form.invalid"
             class="w-full bg-[#39DB4A] text-white py-2.5 rounded-md hover:bg-green-600 transition"
           >
             Signup
           </button>
 
           <!-- Divider -->
-          <div class="flex items-center my-4">
+          <!-- <div class="flex items-center my-4">
             <hr class="flex-grow border-gray-300" />
             <span class="mx-2 text-gray-500 text-sm">or</span>
             <hr class="flex-grow border-gray-300" />
-          </div>
+          </div> -->
 
           <!-- Social Login -->
-          <div class="space-x-6 flex justify-center">
+          <!-- <div class="space-x-6 flex justify-center">
             <button type="button" class="border-0 outline-0 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 512 512">
                 <path
@@ -164,12 +168,12 @@
                 ></path>
               </svg>
             </button>
-          </div>
+          </div> -->
 
           <!-- Sign in Link -->
-          <p class="text-center text-sm text-gray-600 mt-6">
+          <p class="text-center text-sm text-gray-600 mt-1 mb-3">
             Have an account?
-            <a href="#" class="text-green-600 font-medium hover:underline">Sign in</a>
+            <a routerLink="/login" class="text-green-600 font-medium hover:underline">Sign in</a>
           </p>
         </div>
       </form>
