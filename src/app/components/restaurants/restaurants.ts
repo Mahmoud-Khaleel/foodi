@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RestaurantItem } from '../restaurant-item/restaurant-item';
-import { RestaurantsService } from '../../services/restaurants-service';
+import { RestaurantsService } from '../../services/restaurants.service';
 import { RestaurantModel } from '../../models/RestaurantModel';
 import { Error } from '../error/error';
 import { Spinner } from '../spinner/spinner';

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FoodModel } from '../../models/FoodModel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FoodsService } from '../../services/foods-service';
+import { FoodsService } from '../../services/foods.service';
 import { Spinner } from '../spinner/spinner';
 import { Error } from '../error/error';
 import { ToastrService } from 'ngx-toastr';
