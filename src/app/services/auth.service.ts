@@ -9,15 +9,18 @@ export class AuthService {
 
   // Register
   register(userData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/signup`, userData);
+    return this.http.post(`${this.baseUrl}/signup`, userData, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   // Login
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
       tap((res: any) => {
-        if (res?.token) {
-          localStorage.setItem('token', res.token);
+        const token = res?.data?.token;
+        if (token) {
+          localStorage.setItem('token', token);
         }
       }),
     );
@@ -25,7 +28,7 @@ export class AuthService {
 
   // Get Profile
   getProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/profile`);
+    return this.http.get(`${this.baseUrl}/me`);
   }
 
   // Logout
