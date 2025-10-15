@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ReactiveFormsModule, Navbar, Login, UserProfile, SignUp],
+  imports: [RouterOutlet, ReactiveFormsModule, Navbar],
   templateUrl: './app.html',
 })
 export class App {
