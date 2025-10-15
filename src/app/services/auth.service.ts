@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { UserModel } from '../models/UserModel';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -26,9 +27,14 @@ export class AuthService {
     );
   }
 
+  user: UserModel | null = null;
   // Get Profile
-  getProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/me`);
+  getProfile() {
+    this.http.get(`${this.baseUrl}/me`).subscribe({
+      next: (res: any) => {
+        this.user = res?.['data'];
+      },
+    });
   }
 
   // Logout
