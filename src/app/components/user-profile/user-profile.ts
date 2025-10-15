@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserModel } from '../../models/UserModel';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,14 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserProfile implements OnInit {
   form: any;
-  user: any = null;
   loading = true;
+  authService = inject(AuthService);
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private toastr: ToastrService,
-  ) {}
+  constructor(private fb: FormBuilder) {}
+
+  get user(): UserModel | null {
+    return this.authService.user;
+  }
 
   ngOnInit() {
     // initialize form
@@ -31,33 +32,33 @@ export class UserProfile implements OnInit {
       location: [''],
     });
 
-    this.loadUserProfile();
+    // this.loadUserProfile();
   }
 
-  loadUserProfile() {
-    this.authService.getProfile().subscribe({
-      next: (res) => {
-        console.log(' Profile response:', res);
+  // loadUserProfile() {
+  //   this.authService.getProfile().subscribe({
+  //     next: (res) => {
+  //       console.log(' Profile response:', res);
 
-        const u = res?.data?.user || res?.user || res;
-        // Map API data into flat user object
-        this.user = {
-          name: u?.name || '-',
-          email: u?.email || '-',
-          phone: u?.phone || '-',
-          address: u?.location?.address || '-',
-          location: u?.location?.coordinates
-            ? `${u.location.coordinates[1]}, ${u.location.coordinates[0]}`
-            : '-',
-        };
+  //       const u = res?.data?.user || res?.user || res;
+  //       // Map API data into flat user object
+  //       this.user = {
+  //         name: u?.name || '-',
+  //         email: u?.email || '-',
+  //         phone: u?.phone || '-',
+  //         address: u?.location?.address || '-',
+  //         location: u?.location?.coordinates
+  //           ? `${u.location.coordinates[1]}, ${u.location.coordinates[0]}`
+  //           : '-',
+  //       };
 
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('❌ Error loading profile:', err);
-        this.toastr.error('Failed to load profile.');
-        this.loading = false;
-      },
-    });
-  }
+  //       this.loading = false;
+  //     },
+  //     error: (err) => {
+  //       console.error('❌ Error loading profile:', err);
+  //       this.toastr.error('Failed to load profile.');
+  //       this.loading = false;
+  //     },
+  //   });
+  // }
 }
