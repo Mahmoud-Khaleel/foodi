@@ -32,6 +32,7 @@ export class AuthService {
   getProfile() {
     this.http.get(`${this.baseUrl}/me`).subscribe({
       next: (res: any) => {
+        console.log(`This is the user data: ${JSON.stringify(res?.data)}`);
         this.user = res?.['data'];
       },
     });
