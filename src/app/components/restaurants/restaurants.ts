@@ -30,7 +30,9 @@ export class Restaurants implements OnInit {
         this.nearbyRestaurantsErrorMessage = null;
       },
       error: (err) => {
-        this.nearbyRestaurantsErrorMessage = err['message'] || 'Failed to load nearby restaurants';
+        console.log(err);
+        this.nearbyRestaurantsErrorMessage =
+          err['error']['message'] || 'Failed to load nearby restaurants';
         this.nearbyRestaurants = null;
       },
     });

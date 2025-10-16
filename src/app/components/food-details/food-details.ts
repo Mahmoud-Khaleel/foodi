@@ -49,7 +49,7 @@ export class FoodDetails implements OnInit {
           this.toastr.success('Food added to cart successfully!');
         },
         error: (err) => {
-          this.toastr.error('Failed to add food to cart: ' + err.message);
+          this.toastr.error('Failed to add food to cart: ' + err['error']['message']);
         },
       });
   }
