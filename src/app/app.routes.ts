@@ -8,6 +8,7 @@ import { UserProfile } from './components/user-profile/user-profile';
 import { Login } from './components/login/login';
 import { SignUp } from './components/sign-up/sign-up';
 import { RestaurantDetails } from './components/restaurant-details/restaurant-details';
+import { About } from './components/about/about';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,9 +17,10 @@ export const routes: Routes = [
   { path: 'foods/:id', component: FoodDetails },
   { path: 'cart', component: Cart },
   { path: 'restaurants', component: Restaurants },
-  { path: 'foods/:id', component: FoodDetails },
+  { path: 'restaurants/:id', component: RestaurantDetails },
   { path: 'profile', component: UserProfile },
+  { path: 'about', component: About },
   { path: 'login', component: Login },
   { path: 'signup', component: SignUp },
-  { path: 'restaurants/:id', component: RestaurantDetails },
+  { path: 'signup', component: SignUp },
 ];
