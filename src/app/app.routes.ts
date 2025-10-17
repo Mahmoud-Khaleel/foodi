@@ -9,6 +9,7 @@ import { Login } from './components/login/login';
 import { SignUp } from './components/sign-up/sign-up';
 import { RestaurantDetails } from './components/restaurant-details/restaurant-details';
 import { About } from './components/about/about';
+import { NotFound } from './components/not-found/not-found';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,4 +24,5 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'signup', component: SignUp },
   { path: 'signup', component: SignUp },
+  { path: '**', component: NotFound },
 ];
