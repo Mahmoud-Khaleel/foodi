@@ -18,7 +18,7 @@ export class RestaurantsService {
   }
 
   getNearbyRestaurants(): Observable<any> {
-    return this.http.get(`${this.nearbyRestaurantsUrl}?distance=100&unit=km`);
+    return this.http.get(`${this.nearbyRestaurantsUrl}?distance=1&unit=km`);
   }
 
   getRestaurant(id: string): Observable<any> {
