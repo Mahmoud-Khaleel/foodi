@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RestaurantItem } from '../restaurant-item/restaurant-item';
-import { RestaurantsService } from '../../services/restaurants-service';
+import { RestaurantsService } from '../../services/restaurants.service';
 import { RestaurantModel } from '../../models/RestaurantModel';
 import { Error } from '../error/error';
 import { Spinner } from '../spinner/spinner';
@@ -30,7 +30,9 @@ export class Restaurants implements OnInit {
         this.nearbyRestaurantsErrorMessage = null;
       },
       error: (err) => {
-        this.nearbyRestaurantsErrorMessage = err['message'] || 'Failed to load nearby restaurants';
+        console.log(err);
+        this.nearbyRestaurantsErrorMessage =
+          err['error']['message'] || 'Failed to load nearby restaurants';
         this.nearbyRestaurants = null;
       },
     });

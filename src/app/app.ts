@@ -1,16 +1,18 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
-import { Login } from './components/login/login';
-import { SignUp } from './components/sign-up/sign-up';
-import { NavItem } from './components/navbar/children/nav-item/nav-item';
-import { UserProfile } from './components/user-profile/user-profile';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Login, SignUp, NavItem, UserProfile],
+  imports: [RouterOutlet, ReactiveFormsModule, Navbar],
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly title = signal('foodi');
+export class App implements OnInit {
+  authService = inject(AuthService);
+
+  ngOnInit(): void {
+    this.authService.getProfile();
+  }
 }

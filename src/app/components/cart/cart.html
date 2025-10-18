@@ -1,71 +1,40 @@
 <div class="flex flex-col items-center my-10 mx-5">
   <h1 class="text-4xl md:text-6xl font-medium mb-10">Cart</h1>
 
-  <div class="flex justify-center items-center flex-wrap gap-10">
-    @for (
-      item of [
-        {
-          id: '68e92c343e1f05681c62cbf1',
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-        {
-          id: '68e92c4a3e1f05681c62cbf7',
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-        {
-          id: '68e92c513e1f05681c62cbfd',
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-        {
-          id: '68e92c5a3e1f05681c62cc03',
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-        {
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-        {
-          image:
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          title: 'title1',
-          price: '12',
-        },
-      ];
-      track $index
-    ) {
-      <a
-        [routerLink]="['/foods', item.id]"
-        class="relative flex items-center justify-center mb-10 w-80 cursor-pointer transition hover:scale-105 shadow-lg"
-      >
-        <img class="object-cover rounded-lg" src="{{ item.image }}" alt="{{ item.title }}" />
+  @if (errorGettingFoods) {
+    <app-error [error]="errorGettingFoods" />
+  } @else if (!foods) {
+    <div class="mt-80">
+      <app-spinner />
+    </div>
+  } @else if (foods.length == 0) {
+    <h1>Start adding food to your cart now.</h1>
+  } @else {
+    <div class="flex justify-center items-center flex-wrap gap-10">
+      @for (item of foods; track $index) {
+        <a
+          [routerLink]="['/foods', item._id]"
+          class="relative flex items-center justify-center mb-10 w-80 h-96 cursor-pointer transition hover:scale-105 shadow-lg shadow-green-100"
+        >
+          <img
+            class="object-cover h-full w-full rounded-lg"
+            src="{{ item.image }}"
+            alt="{{ item.name }}"
+          />
+          <div class="absolute bottom-0 w-full h-1/4 bg-white/70 text-center py-2 rounded-b-lg">
+            <p class="text-xl font-bold uppercase line-clamp-1">{{ item.name }}</p>
+            <p class="text-lg font-semibold text-left ms-5 mt-2">
+              Price: <span class="font-bold text-xl">{{ item.price | currency }}</span>
+            </p>
+          </div>
+        </a>
+      }
+    </div>
+  }
 
-        <div class="absolute bottom-0 w-full bg-white/70 text-center py-2 rounded-b-lg">
-          <p class="text-2xl font-bold uppercase">{{ item.title }}</p>
-          <p class="text-lg font-semibold text-left ms-5 mt-2">
-            Price: {{ item.price | currency }}
-          </p>
-        </div>
-      </a>
-    }
-  </div>
-
-  <button
+  <!-- <button
     class="sticky bottom-10 flex justify-center items-center mx-auto mt-10 gap-10 cursor-pointer bg-black w-1/3 px-5 py-2 rounded-full text-white text-center font-medium text-2xl shadow-2xl"
   >
     Checkout
-  </button>
+  </button> -->
 </div>

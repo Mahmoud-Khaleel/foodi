@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FoodModel } from '../../models/FoodModel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FoodsService } from '../../services/foods-service';
+import { FoodsService } from '../../services/foods.service';
 import { Spinner } from '../spinner/spinner';
 import { Error } from '../error/error';
 import { ToastrService } from 'ngx-toastr';
@@ -49,7 +49,7 @@ export class FoodDetails implements OnInit {
           this.toastr.success('Food added to cart successfully!');
         },
         error: (err) => {
-          this.toastr.error('Failed to add food to cart: ' + err.message);
+          this.toastr.error('Failed to add food to cart: ' + err['error']['message']);
         },
       });
   }
