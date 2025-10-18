@@ -1,36 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
 import { NavItem } from './children/nav-item/nav-item';
 import { CommonModule } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, NavItem, RouterModule, CommonModule],
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, NavItem, CommonModule],
   templateUrl: './navbar.html',
 })
 export class Navbar implements OnInit {
-  isLoggedIn = false; // Change to true after login
-  isAuthPage = false;
-  isMenuOpen = false;
+  isAuthPage: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    // Detect route change
+  ngOnInit() {
+    this.checkCurrentRoute(this.router.url);
+
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        const currentUrl = event.urlAfterRedirects || event.url;
-        this.isAuthPage = currentUrl.includes('/login') || currentUrl.includes('/signup');
+      .subscribe((event: NavigationEnd) => {
+        this.checkCurrentRoute(event.urlAfterRedirects);
       });
-
-    // Detect login status (example: check localStorage)
-    this.isLoggedIn = !!localStorage.getItem('token'); // Adjust key as per your auth logic
   }
 
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+  checkCurrentRoute(url: string): void {
+    this.isAuthPage = url.includes('/login') || url.includes('/signup');
+  }
+
+  public setLoginStatus(status: boolean): void {
+    const previouslyLoggedIn = this.isLoggedIn;
+    this.isLoggedIn = status;
+
+    // Redirect to /home after a successful login (only on state change)
+    if (status === true && !previouslyLoggedIn) {
+      if (this.router.url !== '/home') {
+        console.log('User signed in. Redirecting to /home.');
+        this.router.navigate(['/home']);
+      }
+    }
   }
 }
