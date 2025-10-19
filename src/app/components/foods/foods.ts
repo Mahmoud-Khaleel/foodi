@@ -14,6 +14,7 @@ import { FoodItem } from '../food-item/food-item';
 export class Foods implements OnInit {
   foods: FoodModel[] | null = null;
   error: string | null = null;
+  skeletons = Array.from({ length: 10 });
 
   foodsService = inject(FoodsService);
   router = inject(Router);

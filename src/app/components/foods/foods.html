@@ -10,7 +10,7 @@
     <app-error [error]="error" />
   } @else if (foods === null) {
     <div class="flex justify-center items-center gap-5 mt-10 flex-wrap">
-      @for (item of [1, 2, 3, 4]; track $index) {
+      @for (item of skeletons; track $index) {
         <app-food-card-shimmer />
       }
     </div>

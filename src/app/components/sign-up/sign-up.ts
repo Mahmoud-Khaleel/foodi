@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -92,20 +93,20 @@ export class SignUp implements OnInit {
     console.log('🟢 Final Signup Payload:', payload);
 
     // ✅ Send to API
-    this.authService.register(payload).subscribe({
-      next: (res) => {
-        console.log('✅ Signup response:', res);
-        this.toastr.success('Account created successfully!');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Signup error:', err);
-        const msg = err.error?.message || 'Signup failed. Try again.';
-        this.toastr.error(msg);
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
-    });
+    this.authService
+      .register(payload)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: (res) => {
+          console.log('✅ Signup response:', res);
+          this.toastr.success('Account created successfully!');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Signup error:', err);
+          const msg = err.error?.message || 'Signup failed. Try again.';
+          this.toastr.error(msg);
+        },
+      });
   }
 }

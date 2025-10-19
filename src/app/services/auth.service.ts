@@ -24,9 +24,8 @@ export class AuthService {
         if (token) {
           localStorage.setItem('token', token);
           this.user = res?.data;
-        } else {
-          this.user = null;
         }
+        this.getProfile();
       }),
     );
   }
@@ -52,7 +51,7 @@ export class AuthService {
   // Logout
   logout() {
     localStorage.removeItem('token');
-    this.user = null;
+    this.getProfile();
   }
 
   // Check if Logged In
