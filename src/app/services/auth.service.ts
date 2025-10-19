@@ -23,6 +23,9 @@ export class AuthService {
         const token = res?.data?.token;
         if (token) {
           localStorage.setItem('token', token);
+          this.user = res?.data;
+        } else {
+          this.user = null;
         }
       }),
     );
@@ -49,6 +52,7 @@ export class AuthService {
   // Logout
   logout() {
     localStorage.removeItem('token');
+    this.user = null;
   }
 
   // Check if Logged In

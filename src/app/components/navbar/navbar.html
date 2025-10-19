@@ -19,7 +19,6 @@
       <app-nav-item [routePath]="'about'" [text]="'About'" />
     </ul>
 
-    <!-- ✅ Auth buttons -->
     <div class="flex max-lg:ml-auto space-x-4 items-center" *ngIf="!isAuthPage">
       <!-- Show when NOT logged in -->
       <ng-container *ngIf="!isLoggedIn; else profileBtn">

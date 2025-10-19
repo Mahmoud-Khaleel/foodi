@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
 import { NavItem } from './children/nav-item/nav-item';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { filter } from 'rxjs/operators';
 })
 export class Navbar implements OnInit {
   isAuthPage: boolean = false;
-  isLoggedIn: boolean = false;
+  authService = inject(AuthService);
 
   constructor(private router: Router) {}
 
@@ -30,16 +31,7 @@ export class Navbar implements OnInit {
     this.isAuthPage = url.includes('/login') || url.includes('/signup');
   }
 
-  public setLoginStatus(status: boolean): void {
-    const previouslyLoggedIn = this.isLoggedIn;
-    this.isLoggedIn = status;
-
-    // Redirect to /home after a successful login (only on state change)
-    if (status === true && !previouslyLoggedIn) {
-      if (this.router.url !== '/home') {
-        console.log('User signed in. Redirecting to /home.');
-        this.router.navigate(['/home']);
-      }
-    }
+  get isLoggedIn() {
+    return this.authService.user !== null;
   }
 }
