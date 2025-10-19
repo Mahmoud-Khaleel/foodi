@@ -62,11 +62,15 @@ export class SignUp implements OnInit {
     );
   }
 
+  isLoading: boolean = false;
+
   onSubmit() {
     if (this.form.invalid) {
       this.toastr.warning('Please fill all required fields correctly.');
       return;
     }
+
+    this.isLoading = true;
 
     const f = this.form.value;
 
@@ -98,6 +102,9 @@ export class SignUp implements OnInit {
         console.error('Signup error:', err);
         const msg = err.error?.message || 'Signup failed. Try again.';
         this.toastr.error(msg);
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }

@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { Spinner } from '../spinner/spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, Spinner],
   templateUrl: './login.html',
 })
 export class Login {
@@ -16,6 +17,7 @@ export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
+  isLoading: boolean = false;
 
   // Define login form
   form = this.fb.group({
@@ -28,7 +30,7 @@ export class Login {
       this.toastr.error('Please enter valid credentials');
       return;
     }
-
+    this.isLoading = true;
     this.authService.login(this.form.value).subscribe({
       next: (res: any) => {
         this.toastr.success('Login successful!');
@@ -37,6 +39,9 @@ export class Login {
       },
       error: (err) => {
         this.toastr.error('Login failed. Please try again.');
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }

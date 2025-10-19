@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NavItem, CommonModule],
+  imports: [RouterLink, NavItem, CommonModule],
   templateUrl: './navbar.html',
 })
 export class Navbar implements OnInit {
