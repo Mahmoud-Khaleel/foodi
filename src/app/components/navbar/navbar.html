@@ -1,17 +1,12 @@
 <nav class="px-5 md:px-10 lg:px-20 py-2 shadow-xs">
   <div class="mx-auto flex items-center justify-between">
+    <!-- Left: Logo -->
     <a routerLink="/home" class="max-sm:hidden">
       <img class="h-10" src="images/logo.png" alt="Logo" />
     </a>
 
-    <button
-      class="lg:hidden flex items-center text-gray-700"
-      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
-    >
-      <img class="w-8 cursor-pointer" src="images/menu.png" alt="menu" />
-    </button>
-
-    <ul class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
+    <!-- Center: Nav Items -->
+    <ul class="hidden lg:flex items-center gap-8 font-medium text-gray-700 mx-auto">
       <app-nav-item [routePath]="'home'" [text]="'Home'" />
       <app-nav-item [routePath]="'foods'" [text]="'Foods'" />
       <app-nav-item [routePath]="'restaurants'" [text]="'Restaurants'" />
@@ -19,12 +14,12 @@
       <app-nav-item [routePath]="'about'" [text]="'About'" />
     </ul>
 
-    <div class="flex max-lg:ml-auto space-x-4 items-center" *ngIf="!isAuthPage">
-      <!-- Show when NOT logged in -->
+    <!-- Right: Auth Buttons -->
+    <div class="hidden lg:flex items-center space-x-4" *ngIf="!isAuthPage">
       <ng-container *ngIf="!isLoggedIn; else profileBtn">
         <button
           routerLink="/login"
-          class="px-4 mx-3 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50 transition-all"
+          class="px-4 py-2 text-sm rounded-full font-medium cursor-pointer tracking-wide text-slate-900 border border-gray-400 bg-transparent hover:bg-gray-50 transition-all"
         >
           Login
         </button>
@@ -36,7 +31,6 @@
         </button>
       </ng-container>
 
-      <!-- Show when logged in -->
       <ng-template #profileBtn>
         <button
           routerLink="/profile"
@@ -46,8 +40,17 @@
         </button>
       </ng-template>
     </div>
+
+    <!-- Mobile menu button -->
+    <button
+      class="lg:hidden flex items-center text-gray-700"
+      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+    >
+      <img class="w-8 cursor-pointer" src="images/menu.png" alt="menu" />
+    </button>
   </div>
 
+  <!-- Mobile Menu -->
   <div id="mobileMenu" class="lg:hidden hidden mt-4">
     <ul class="flex flex-col items-center gap-4 font-medium text-gray-700">
       <app-nav-item [routePath]="'home'" [text]="'Home'" />
@@ -55,8 +58,6 @@
       <app-nav-item [routePath]="'restaurants'" [text]="'Restaurants'" />
       <app-nav-item [routePath]="'cart'" [text]="'Cart'" />
       <app-nav-item [routePath]="'about'" [text]="'About'" />
-
-      <!-- Show Profile in mobile menu only if logged in -->
       <app-nav-item *ngIf="isLoggedIn" [routePath]="'profile'" [text]="'Profile'" />
     </ul>
   </div>
