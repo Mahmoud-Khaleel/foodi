@@ -6,6 +6,7 @@ import { Spinner } from '../spinner/spinner';
 import { Error } from '../error/error';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-food-details',
@@ -20,6 +21,7 @@ export class FoodDetails implements OnInit {
   foodsService = inject(FoodsService);
   route = inject(ActivatedRoute);
   toastr = inject(ToastrService);
+  authService = inject(AuthService);
 
   ngOnInit() {
     this.getFood();
@@ -43,7 +45,12 @@ export class FoodDetails implements OnInit {
     this.isAddingFoodToCart = true;
     this.foodsService
       .addFoodToCart(this.food!._id)
-      .pipe(finalize(() => (this.isAddingFoodToCart = false)))
+      .pipe(
+        finalize(() => {
+          this.isAddingFoodToCart = false;
+          this.authService.getProfile();
+        }),
+      )
       .subscribe({
         next: (res) => {
           this.toastr.success('Food added to cart successfully!');
