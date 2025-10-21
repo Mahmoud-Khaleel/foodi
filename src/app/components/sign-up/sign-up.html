@@ -17,8 +17,18 @@
               placeholder="Enter your name"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
+            <div
+              *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+              class="text-red-500 text-xs mt-1"
+            >
+              <div *ngIf="form.get('name')?.errors?.['required']">Name is required.</div>
+              <div *ngIf="form.get('name')?.errors?.['minlength']">
+                Name must be at least 3 characters.
+              </div>
+            </div>
           </div>
-          <!-- phone -->
+
+          <!-- Phone -->
           <div>
             <label class="justify-start text-black text-sm font-medium font-['Poppins']"
               >Phone</label
@@ -29,7 +39,15 @@
               placeholder="Enter your phone"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
+            <div
+              *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid"
+              class="text-red-500 text-xs mt-1"
+            >
+              <div *ngIf="form.get('phone')?.errors?.['required']">Phone is required.</div>
+              <div *ngIf="form.get('phone')?.errors?.['pattern']">Enter a valid phone number.</div>
+            </div>
           </div>
+
           <!-- Email -->
           <div>
             <label class="justify-start text-black text-sm font-medium font-['Poppins']"
@@ -41,34 +59,53 @@
               placeholder="Enter your email"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
+            <div
+              *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+              class="text-red-500 text-xs mt-1"
+            >
+              <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="form.get('email')?.errors?.['email']">Enter a valid email.</div>
+            </div>
           </div>
 
           <!-- Password -->
           <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="justify-start text-black text-sm font-medium font-['Poppins']"
-                >Password</label
-              >
-            </div>
+            <label class="justify-start text-black text-sm font-medium font-['Poppins']"
+              >Password</label
+            >
             <input
               type="password"
               formControlName="password"
               placeholder="Enter your password"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
-          </div>
-          <!-- address -->
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="justify-start text-black text-sm font-medium font-['Poppins']"
-                >Address</label
-              >
+            <div
+              *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
+              class="text-red-500 text-xs mt-1"
+            >
+              <div *ngIf="form.get('password')?.errors?.['required']">Password is required.</div>
+              <div *ngIf="form.get('password')?.errors?.['minlength']">
+                Password must be at least 6 characters.
+              </div>
             </div>
+          </div>
+          <!-- Address -->
+          <div>
+            <label class="justify-start text-black text-sm font-medium font-['Poppins']"
+              >Address</label
+            >
             <input
               type="text"
+              formControlName="address"
               placeholder="Enter your address"
               class="w-full border placeholder-gray-400 placeholder:text-sm border-gray-300 rounded-[10px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
+            <div
+              *ngIf="form.get('address')?.touched && form.get('address')?.invalid"
+              class="text-red-500 text-xs mt-1"
+            >
+              <div *ngIf="form.get('address')?.errors?.['required']">Address is required.</div>
+            </div>
           </div>
           <!-- 🔘 Location -->
           <div class="flex items-center gap-2">

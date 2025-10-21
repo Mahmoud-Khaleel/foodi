@@ -23,22 +23,49 @@ export class SignUp implements OnInit {
   ) {}
 
   ngOnInit() {
-    // ✅ Initialize form
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      phone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      address: [''],
+      name: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(3)],
+          updateOn: 'change',
+        },
+      ],
+      phone: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern(/^(\+20|0)?1[0125][0-9]{8}$/)],
+          updateOn: 'change',
+        },
+      ],
+      email: [
+        '',
+        {
+          validators: [Validators.required, Validators.email],
+          updateOn: 'change',
+        },
+      ],
+      password: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(6)],
+          updateOn: 'change',
+        },
+      ],
+      address: [
+        '',
+        {
+          validators: [Validators.required],
+          updateOn: 'change',
+        },
+      ],
       lat: [null],
       lng: [null],
     });
 
-    // ✅ Automatically get location when component loads
     this.getCurrentLocation();
   }
 
-  // ✅ Get user’s current location using browser API
   getCurrentLocation() {
     if (!navigator.geolocation) {
       this.toastr.warning('Geolocation is not supported by your browser.');
@@ -51,7 +78,6 @@ export class SignUp implements OnInit {
         const lng = position.coords.longitude;
         console.log('📍 Coordinates:', lat, lng);
 
-        // ✅ Patch coordinates into form
         this.form.patchValue({ lat, lng });
         this.toastr.success('Location detected successfully!');
       },
@@ -75,7 +101,6 @@ export class SignUp implements OnInit {
 
     const f = this.form.value;
 
-    // ✅ Format location object for backend
     const location = {
       type: 'Point',
       coordinates: [f.lng, f.lat],
@@ -92,7 +117,6 @@ export class SignUp implements OnInit {
 
     console.log('🟢 Final Signup Payload:', payload);
 
-    // ✅ Send to API
     this.authService
       .register(payload)
       .pipe(finalize(() => (this.isLoading = false)))
