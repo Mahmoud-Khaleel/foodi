@@ -6,6 +6,15 @@
     a story worth savoring.
   </p>
 
+  <div class="mt-8 w-full md:w-1/2 flex justify-center">
+    <input
+      type="text"
+      placeholder="Search food..."
+      [(ngModel)]="searchTerm"
+      class="w-full md:w-3/4 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+    />
+  </div>
+
   @if (error !== null) {
     <app-error [error]="error" />
   } @else if (foods === null) {
@@ -16,9 +25,13 @@
     </div>
   } @else {
     <div class="flex flex-wrap gap-5 mt-10 mb-20 justify-center">
-      @for (food of foods; track food._id) {
+      @for (food of filteredFoods; track food._id) {
         <app-food-item [food]="food" />
       }
     </div>
+
+    @if (filteredFoods.length === 0) {
+      <p class="text-gray-500 text-center mt-10 text-lg">No foods match your search.</p>
+    }
   }
 </div>
