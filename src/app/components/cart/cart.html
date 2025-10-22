@@ -13,20 +13,27 @@
     <div class="flex justify-center items-center flex-wrap gap-10">
       @for (item of foods; track $index) {
         <a
-          [routerLink]="['/foods', item._id]"
+          [routerLink]="['/foods', item.food._id]"
           class="relative flex items-center justify-center mb-10 w-80 h-96 cursor-pointer transition hover:scale-105 shadow-lg shadow-green-100"
         >
           <img
             class="object-cover h-full w-full rounded-lg"
-            src="{{ item.image }}"
-            alt="{{ item.name }}"
+            src="{{ item.food.image }}"
+            alt="{{ item.food.name }}"
           />
           <div class="absolute bottom-0 w-full h-1/4 bg-white/70 text-center py-2 rounded-b-lg">
-            <p class="text-xl font-bold uppercase line-clamp-1">{{ item.name }}</p>
+            <p class="text-xl font-bold uppercase line-clamp-1">{{ item.food.name }}</p>
             <p class="text-lg font-semibold text-left ms-5 mt-2">
-              Price: <span class="font-bold text-xl">{{ item.price | currency }}</span>
+              Price: <span class="font-bold text-xl">{{ item.food.price | currency }}</span>
             </p>
           </div>
+          @if (item.count > 1) {
+            <div
+              class="absolute top-0 right-0 min-h-12 min-w-12 h-fit w-fit bg-black text-white flex justify-center items-center text-xl rounded-tr-lg p-2"
+            >
+              x{{ item.count }}
+            </div>
+          }
         </a>
       }
     </div>
